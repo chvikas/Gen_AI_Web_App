@@ -5,7 +5,15 @@ function App() {
 
   return (
    <div className='main-container'>
-    <h1>Title</h1>
+    <h1>Gen AI Web App</h1>
+    <div className='form-container'>
+      <div>
+        <label>Enter Query:</label>
+        <input className="query-input" type="text" placeholder="Enter something"/>
+      </div>
+
+    </div>
+
    </div>
   );
 }
