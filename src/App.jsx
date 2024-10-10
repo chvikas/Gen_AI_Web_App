@@ -9,7 +9,7 @@ function App() {
     <div className='form-container'>
       <div>
         <label>Enter Query:</label>
-        <input className="query-input" type="text" placeholder="Enter something"/>
+        <input className="query-input" type="text" placeholder="Ask me something:"/>
       </div>
 
     </div>
