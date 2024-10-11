@@ -1,77 +1,89 @@
+/* Main container styling */
 .main-container {
-  background: beige;
+  background: #f5f5dc; /* A lighter beige for subtlety */
   min-height: 100vh;
-
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   gap: 50px;
+  padding: 20px;
 }
 
-h1{
-  color: red;
-  font-size:72px;
-  text-shadow: 1px 1px 10px #999;
-  padding: 30px;
+/* Heading styling */
+h1 {
+  color: #d9534f; /* Softer red tone */
+  font-size: 64px; /* Slightly smaller for readability */
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  padding: 20px;
+  margin: 0;
+  transition: transform 0.3s ease; /* Smooth hover effect */
 }
 
-.form-container{
-  background: white;
+h1:hover {
+  transform: scale(1.05);
+}
+
+/* Form container */
+.form-container {
+  background: #fff;
   min-height: 500px;
-  width: 500px;
-  box-shadow: 1px 1px 10px #999;
-  border-radius: 20px;
-
+  width: 90%; /* Responsive width */
+  max-width: 500px; /* Limit the width */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  border-radius: 15px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
   padding: 40px;
 }
 
-.form-container >div{
-   width:100%;
+/* Labels and inputs */
+.form-container > div {
+  width: 100%;
 }
-label{
+
+label {
   display: block;
-  padding-bottom: 10px;
-  font-size: 24px;
-  font-weight: 500;
-}
-.query-input{
-  font-size: 24px;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  box-shadow: 1px 1px 10px #999;
-  border-radius: 10px;
-}
-.questions-input{
-  width: 100%;
-}
-
-.difficulty-input{
-  font-size: 24px;
-  padding:10px;
-  width: 100%;
-  border: none;
-  box-shadow: 1px 1px 10px #999;
-  border-radius: 10px;
-}
-
-.submit-button{
+  margin-bottom: 10px;
   font-size: 20px;
-  padding: 10px;
-  width: 100%;
-  background:linear-gradient(to right, orange, rgb(156, 153, 120));
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius:10px;
-  cursor: pointer;
+  font-weight: 600;
+  color: #333;
 }
 
-.submit-button:hover{
-  background:linear-gradient(to left, orange, rgb(156, 153, 120));
+.query-input,
+.difficulty-input,
+.questions-input {
+  font-size: 18px;
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #ccc; /* Border for better visibility */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.query-input:focus,
+.difficulty-input:focus {
+  border-color: #d9534f; /* Match focus color to theme */
+  box-shadow: 0 4px 10px rgba(217, 83, 79, 0.2);
+}
+
+/* Submit button styling */
+.submit-button {
+  font-size: 18px;
+  padding: 12px;
+  width: 100%;
+  background: linear-gradient(to right, #ff7f50, #9c9978);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+  background: linear-gradient(to left, #ff7f50, #9c9978);
+  transform: scale(1.05);
 }
