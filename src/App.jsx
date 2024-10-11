@@ -32,11 +32,9 @@ function App() {
   
     try {
       // This part would typically be in a separate server-side function
-      const groq = new Groq({
-        apiKey: import.meta.env.VITE_GROQ_API_KEY,
-        dangerouslyAllowBrowser: true,  // Allow browser usage
-      });
-      
+       const groq = new Groq({
+          apiKey: process.env.GROQ_API_KEY, // Securely use API key from Vercel environment variables
+        });
       
       const promptMessage = `Generate ${noOfQuestions} ${difficulty} questions with 4 options in an array format on the topic: ${query}.
 
