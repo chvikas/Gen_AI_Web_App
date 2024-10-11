@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 
+// Note: This import will only work if you're using a bundler that supports it
+// and if you've set up environment variables correctly
+import { Groq } from 'groq-sdk';
+
 function App() {
   const [query, setQuery] = useState("");
   const [noOfQuestions, setNoOfQuestions] = useState(10);
@@ -27,19 +31,45 @@ function App() {
     setIsLoading(true);
   
     try {
-      const response = await fetch('/api/generate-questions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          noOfQuestions,
-          difficulty,
-          query,
-        }),
+      // This part would typically be in a separate server-side function
+      const groq = new Groq({
+        apiKey: import.meta.env.VITE_GROQ_API_KEY,
+        dangerouslyAllowBrowser: true,  // Allow browser usage
       });
-  
-      const generatedQuestions = await response.json();
+      
+      
+      const promptMessage = `Generate ${noOfQuestions} ${difficulty} questions with 4 options in an array format on the topic: ${query}.
+
+        Each question should be structured in JSON format with the following keys:
+        - 'question': the text of the question.
+        - 'options': An array of 4 options, each option as a string.
+        - 'correct_option': The correct option (must match one of the options).
+        - 'difficulty': The difficulty level of the question ('easy', 'medium', or 'hard').
+        
+        Output the result as an array of JSON objects. with the structure described. 
+        Dont put anything else. Only valid Array.
+        
+        Example format:
+        [
+          {
+            "question": "What is the capital of France?",
+            "options": ["Paris", "London", "Berlin","Rome"],
+            "correct_option": "Paris",
+            "difficulty": "easy"
+          }
+        ]`;
+
+      const completion = await groq.chat.completions.create({
+        messages: [
+          {
+            role: 'user',
+            content: promptMessage,
+          },
+        ],
+        model: 'llama-3.1-8b-instant',
+      });
+
+      const generatedQuestions = JSON.parse(completion.choices?.[0]?.message?.content || '[]');
       setQuestions(generatedQuestions);
     } catch (error) {
       console.error('Error generating questions:', error);
